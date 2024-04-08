@@ -1,0 +1,9 @@
+{
+	"id": "akasha",
+	"name": "Akasha",
+	"version": "1.0.0",
+	"minAppVersion": "0.15.0",
+	"description": "Language Utilities",
+	"author": "Lita",
+	"isDesktopOnly": false
+}
