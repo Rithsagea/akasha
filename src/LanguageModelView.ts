@@ -1,5 +1,4 @@
 import { ItemView, Workspace, WorkspaceLeaf } from "obsidian";
-
 import LanguageModelComponent from "./LanguageModelComponent.svelte";
 
 export const VIEW_TYPE_LANGUAGE_MODEL = "language-model-view";
@@ -22,9 +21,6 @@ export class LanguageModelView extends ItemView {
 	async onOpen() {
 		this.component = new LanguageModelComponent({
 			target: this.contentEl,
-			props: {
-				variable: 1,
-			},
 		});
 	}
 
