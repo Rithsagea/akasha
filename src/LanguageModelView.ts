@@ -1,5 +1,6 @@
-import { ItemView, Workspace, WorkspaceLeaf } from "obsidian";
+import { App, ItemView, Workspace, WorkspaceLeaf } from "obsidian";
 import LanguageModelComponent from "./LanguageModelComponent.svelte";
+import { getCompletion } from "ChatModel";
 
 export const VIEW_TYPE_LANGUAGE_MODEL = "language-model-view";
 
@@ -44,4 +45,23 @@ export async function activateLanguageModelView(workspace: Workspace) {
 	}
 
 	if (leaf) workspace.revealLeaf(leaf);
+}
+
+export async function summarizeCurrentNote(app: App) {
+	const { workspace, vault } = app;
+
+	const file = workspace.getActiveFile();
+	if (file) {
+		const content = await vault.read(file);
+		const summary = await getCompletion(
+			{
+				role: "system",
+				content: "You are a helpful assistant.",
+			},
+			{ role: "user", content: "Summarize the content of my notes." },
+			{ role: "user", content: content }
+		);
+
+		console.log(summary);
+	}
 }

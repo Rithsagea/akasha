@@ -8,6 +8,7 @@ import {
 	LanguageModelView,
 	VIEW_TYPE_LANGUAGE_MODEL,
 	activateLanguageModelView,
+	summarizeCurrentNote,
 } from "LanguageModelView";
 import { Plugin } from "obsidian";
 
@@ -30,6 +31,15 @@ export default class AkashaPlugin extends Plugin {
 			callback: () => {
 				activateLanguageModelView(this.app.workspace);
 				console.log("Opening Language Model!");
+			},
+		});
+
+		this.addCommand({
+			id: "summarize-current_note",
+			name: "Summarize Current Note",
+			callback: () => {
+				summarizeCurrentNote(this.app);
+				console.log("Summarizing Current Note!");
 			},
 		});
 	}
